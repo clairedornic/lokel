@@ -1,9 +1,10 @@
 # Lokel
 
-## Projet de traduction et d'apprentissage de la langue des signes
+## Projet de traduction et d'apprentissage du langage des signes
 
 Ce projet vise à rendre le langage des signes plus accessible en le transformant en un langage facilement traduisible et simple à apprendre. L'objectif principal est de faciliter la communication des personnes sourdes, malentendantes ou muettes en proposant des fonctionnalités de traduction et d'apprentissage du langage des signes.
 
+## Fonctionnalités
 ### Fonctionnalités du MVP
 
 - **Apprentissage interactif** : L'application offrira des fonctionnalités d'apprentissage du langage des signes à l'aide d'exercices pratiques qui leur permettront de comprendre et d'apprendre toutes les nuances d'une langue des signes.
