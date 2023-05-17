@@ -19,6 +19,10 @@ let customFonts = {
 	'Poppins-Medium': require('./app/assets/fonts/Poppins-Medium.ttf'),
 	'Poppins-SemiBold': require('./app/assets/fonts/Poppins-SemiBold.ttf'),
 	'Poppins-Bold': require('./app/assets/fonts/Poppins-Bold.ttf'),
+	'Husansans-Light': require('./app/assets/fonts/Husansans-Light.ttf'),
+	'Husansans-Regular': require('./app/assets/fonts/Husansans-Regular.ttf'),
+	'Husansans-Medium': require('./app/assets/fonts/Husansans-Medium.ttf'),
+	'Husansans-Bold': require('./app/assets/fonts/Husansans-Bold.ttf'),
 };
 
 const Tab = createBottomTabNavigator();
