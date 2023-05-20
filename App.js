@@ -1,15 +1,25 @@
-import { useCallback } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { useCallback, useState } from 'react';
+import { StyleSheet, Text, LogBox } from 'react-native';
+
 import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import LearnStack from './app/stacks/Learn.Stack';
-import ProfilStack from './app/stacks/ProfilStack';
-import TranslateStack from './app/stacks/TranslateStack';
-import NavIcons from './app/components/NavIcons/NavIcons';
-import theme from './theme-design';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { Provider as PaperProvider } from 'react-native-paper';
+
+import LearnStack from './app/stacks/LearnStack';
+import ProfilStack from './app/stacks/ProfilStack';
+import HomeScreen from './app/screens/HomeScreen';
+import AuthStack from './app/stacks/AuthStack';
+import NavIcons from './app/components/NavIcons/NavIcons';
+import theme from './theme-design';
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,16 +39,24 @@ const Tab = createBottomTabNavigator();
 
 const App = () => {
 
+	// Know if user is logged in or not
+	const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+	
 	const [isLoaded] = useFonts(customFonts);
 	if (!isLoaded) {
 		return null;
 	}
 	SplashScreen.hideAsync();
 
+	const handleUpdateLoggedInState = (loggedIn) => {
+		setIsUserLoggedIn(loggedIn);
+	};
+
 	return (
-		<>
+		<PaperProvider>
 			<NavigationContainer style={styles.nav}>
-				<Tab.Navigator
+				{isUserLoggedIn ? (
+					<Tab.Navigator
 					screenOptions={({ route }) => ({
 						tabBarStyle: { height: 70, borderTopColor: '#DEDEDE', borderTopWidth: 1, elevation: 0 },
 						tabBarItemStyle: { paddingTop: 4 },
@@ -48,14 +66,17 @@ const App = () => {
 						tabBarLabel: ({ tintColor, focused }) =>
 						focused ? (<Text style={{ color: theme.colors.violet, fontSize: 16, borderBottomWidth: 3, borderBottomColor: theme.colors.violet, paddingBottom: 0, paddingTop: 2, fontFamily: 'Poppins-Bold' }} >{route.name}</Text>) : (<Text style={{ color: theme.colors.violet, fontSize: 16, borderBottomWidth: 3, borderBottomColor: theme.colors.transparent, paddingBottom: 0, paddingTop: 2, fontFamily: 'Poppins' }} >{route.name}</Text>),
 					})}
-				>
-					<Tab.Screen name="Apprendre" component={LearnStack} options={{ headerShown: false }} />
-					<Tab.Screen name="Traduire" component={TranslateStack} options={{ headerShown: false }} />
-					<Tab.Screen name="Profil" component={ProfilStack} options={{ headerShown: false }} />
-				</Tab.Navigator>
+					>
+						<Tab.Screen name="Apprendre" component={LearnStack} options={{ headerShown: false }} />
+						<Tab.Screen name="Traduire" component={HomeScreen} options={{ headerShown: false }} />
+						<Tab.Screen name="Profil" component={ProfilStack} options={{ headerShown: false }} />
+					</Tab.Navigator>
+				) : (
+					<AuthStack handleUpdateLoggedInState={handleUpdateLoggedInState} />
+				)}
 			</NavigationContainer>
 			<StatusBar style="auto" />
-		</>
+		</PaperProvider>
 	);
 }
 
