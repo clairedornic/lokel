@@ -40,7 +40,7 @@ const LoginScreen = ({ route }) => {
                 <Divider style={styles.divider}></Divider>
                 <Text style={styles.subtitle}>Vous n’avez pas de compte ?</Text>
                 <Button labelStyle={styles.subtitleButton} onPress={() => {
-                    navigation.navigate('RegisterScreen');
+                    navigation.navigate('HomeScreen');
                 }}>Inscrivez-vous !</Button>
             </View>
             <View style={styles.containerForm}>
