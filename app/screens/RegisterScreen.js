@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useState } from 'react';
 import { View, StyleSheet } from "react-native";
 import { Divider, Text, Button, TextInput, Checkbox } from 'react-native-paper';
@@ -8,8 +8,8 @@ import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "
 import { getFirestore, collection, addDoc, doc, setDoc } from "firebase/firestore";
 import theme from '../../theme-design';
 
-const RegisterScreen = ({route}) => {
-    const { handleUpdateLoggedInState } = route.params;
+const RegisterScreen = () => {
+    const { setIsUserLoggedIn } = useContext(SignInContext);
 
     const [conditionsChecked, setConditionsChecked] = useState(false);
     const [firstName, setFirstName ] = useState('');
@@ -25,7 +25,6 @@ const RegisterScreen = ({route}) => {
 
         createUserWithEmailAndPassword(auth, email, password)
         .then(userCredidentials => {
-            console.log('User added to the DB')
             const user = userCredidentials.user;
             sendEmailVerification(auth.currentUser)
 
@@ -33,8 +32,6 @@ const RegisterScreen = ({route}) => {
                 console.log('Verification Email send')
             })
             .catch(err => {
-                console.log('Email Verification');
-                console.log(err);
                 alert("Un problème est survenu : " + err)
             })
             .then(() => {
@@ -46,17 +43,14 @@ const RegisterScreen = ({route}) => {
                     firstName: firstName,
                 })
 
-                handleUpdateLoggedInState(true);
+                setIsUserLoggedIn(true);
                 navigation.navigate('HomeScreen');
             })
             .catch(err => {
-                console.log('Error to add profil info');
-                console.log(err);
                 alert("Un problème est survenu : " + err);
             })
         })
         .catch(err => {
-            console.log(err);
             alert("Un problème est survenu au moment de l'incription");
         });
     }

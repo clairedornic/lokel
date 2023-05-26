@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
@@ -6,20 +6,19 @@ import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createStackNavigator();
 
-const AuthStack = ({handleUpdateLoggedInState}) => {
+const AuthStack = () => {
+
   return (
     <Stack.Navigator>
       <Stack.Screen 
         name="LoginScreen" 
         component={LoginScreen} 
         options={{ headerShown: false }}
-        initialParams={{ handleUpdateLoggedInState }}
       />
       <Stack.Screen 
         name="RegisterScreen" 
         component={RegisterScreen} 
         options={{ headerShown: false }} 
-        initialParams={{ handleUpdateLoggedInState }}
       />
        <Stack.Screen 
         name="HomeScreen" 

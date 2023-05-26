@@ -10,12 +10,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Provider as PaperProvider } from 'react-native-paper';
 
+import { SignInContext } from './app/contexts/SignInContext'
+
 import LearnStack from './app/stacks/LearnStack';
 import ProfilStack from './app/stacks/ProfilStack';
 import HomeScreen from './app/screens/HomeScreen';
 import AuthStack from './app/stacks/AuthStack';
 import NavIcons from './app/components/NavIcons/NavIcons';
 import theme from './theme-design';
+
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state',
@@ -48,13 +51,12 @@ const App = () => {
 	}
 	SplashScreen.hideAsync();
 
-	const handleUpdateLoggedInState = (loggedIn) => {
-		setIsUserLoggedIn(loggedIn);
-	};
-
 	return (
 		<PaperProvider>
 			<NavigationContainer style={styles.nav}>
+			<SignInContext.Provider
+				value={{ setIsUserLoggedIn }}
+			>
 				{isUserLoggedIn ? (
 					<Tab.Navigator
 					screenOptions={({ route }) => ({
@@ -66,14 +68,16 @@ const App = () => {
 						tabBarLabel: ({ tintColor, focused }) =>
 						focused ? (<Text style={{ color: theme.colors.violet, fontSize: 16, borderBottomWidth: 3, borderBottomColor: theme.colors.violet, paddingBottom: 0, paddingTop: 2, fontFamily: 'Poppins-Bold' }} >{route.name}</Text>) : (<Text style={{ color: theme.colors.violet, fontSize: 16, borderBottomWidth: 3, borderBottomColor: theme.colors.transparent, paddingBottom: 0, paddingTop: 2, fontFamily: 'Poppins' }} >{route.name}</Text>),
 					})}
+					initialRouteName="Traduire"
 					>
 						<Tab.Screen name="Apprendre" component={LearnStack} options={{ headerShown: false }} />
 						<Tab.Screen name="Traduire" component={HomeScreen} options={{ headerShown: false }} />
-						<Tab.Screen name="Profil" component={ProfilStack} options={{ headerShown: false }} />
+						<Tab.Screen name="Profil" component={ProfilStack} options={{ headerShown: false }}/>
 					</Tab.Navigator>
 				) : (
-					<AuthStack handleUpdateLoggedInState={handleUpdateLoggedInState} />
+					<AuthStack/>
 				)}
+      		</SignInContext.Provider>
 			</NavigationContainer>
 			<StatusBar style="auto" />
 		</PaperProvider>

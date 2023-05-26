@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ProfilScreen from '../screens/ProfilScreen';
+
+const Stack = createStackNavigator();
 
 const ProfilStack = () => {
+
 	return (
-		<View style={styles.container}>
-			<Text>Profil Stack</Text>
-		</View>
+		<Stack.Navigator>
+			<Stack.Screen 
+				name="ProfilScreen" 
+				component={ProfilScreen} 
+				options={{ headerShown: false }}
+			/>
+		</Stack.Navigator>
 	);
 }
 

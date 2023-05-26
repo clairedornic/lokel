@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useState } from 'react';
 import { View, Image, StyleSheet } from "react-native";
 import { Divider, Text, Button, TextInput } from 'react-native-paper';
@@ -7,9 +7,10 @@ import { FIREBASE_APP } from '../config/firebase'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useTheme } from 'react-native-paper';
 import theme from '../../theme-design';
+import { SignInContext } from '../contexts/SignInContext'
 
-const LoginScreen = ({ route }) => {
-    const { handleUpdateLoggedInState } = route.params;
+const LoginScreen = () => {
+    const { setIsUserLoggedIn } = useContext(SignInContext);
 
     const theme = useTheme();
     const { colors } = theme;
@@ -25,10 +26,11 @@ const LoginScreen = ({ route }) => {
         signInWithEmailAndPassword(auth, email, password)
         .then(userCredidentials => {
             const user = userCredidentials.user;
-            handleUpdateLoggedInState(true);
-            navigation.navigate('HomeScreen');
+            
+            setIsUserLoggedIn(true);
         })
         .catch(err => {
+            console.log(err);
             alert("Un problème est survenu");
         });
     }
@@ -40,7 +42,7 @@ const LoginScreen = ({ route }) => {
                 <Divider style={styles.divider}></Divider>
                 <Text style={styles.subtitle}>Vous n’avez pas de compte ?</Text>
                 <Button labelStyle={styles.subtitleButton} onPress={() => {
-                    navigation.navigate('HomeScreen');
+                    navigation.navigate('RegisterScreen');
                 }}>Inscrivez-vous !</Button>
             </View>
             <View style={styles.containerForm}>
