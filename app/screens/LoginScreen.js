@@ -7,10 +7,10 @@ import { FIREBASE_APP } from '../config/firebase'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useTheme } from 'react-native-paper';
 import theme from '../../theme-design';
-import { SignInContext } from '../contexts/SignInContext'
+import { LogInContext } from '../contexts/LogInContext'
 
 const LoginScreen = () => {
-    const { setIsUserLoggedIn } = useContext(SignInContext);
+    const { setIsUserLoggedIn } = useContext(LogInContext);
 
     const theme = useTheme();
     const { colors } = theme;

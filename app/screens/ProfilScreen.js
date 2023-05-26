@@ -4,11 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { Text, Button } from 'react-native-paper';
 import { FIREBASE_APP } from '../config/firebase'
 import { getAuth, signOut } from "firebase/auth";
-import { SignInContext } from '../contexts/SignInContext'
+import { LogInContext } from '../contexts/LogInContext'
 import theme from '../../theme-design';
 
 const ProfilScreen = () => {
-    const { setIsUserLoggedIn } = useContext(SignInContext);
+    const { setIsUserLoggedIn } = useContext(LogInContext);
 
     const auth = getAuth(FIREBASE_APP);
     const navigation = useNavigation();

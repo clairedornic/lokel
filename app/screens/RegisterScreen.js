@@ -9,7 +9,7 @@ import { getFirestore, collection, addDoc, doc, setDoc } from "firebase/firestor
 import theme from '../../theme-design';
 
 const RegisterScreen = () => {
-    const { setIsUserLoggedIn } = useContext(SignInContext);
+    const { setIsUserLoggedIn } = useContext(LogInContext);
 
     const [conditionsChecked, setConditionsChecked] = useState(false);
     const [firstName, setFirstName ] = useState('');
