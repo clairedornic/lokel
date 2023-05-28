@@ -1,0 +1,64 @@
+import { useEffect, useState } from 'react';
+import { View, StyleSheet } from "react-native"
+import { Text, Button } from 'react-native-paper';
+import { Camera, CameraType } from 'expo-camera';
+import theme from '../../theme-design';
+
+const HomeScreen = () => {
+    const [hasCameraPermission, setHasCameraPermission] = useState(null);
+    const [camera, setCamera] = useState(null);
+    const [type, setType] = useState(CameraType.back);
+      
+    function toggleCameraType() {
+        setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+    }
+
+    useEffect(() => {
+        (async () => {
+            const cameraStatus = await Camera.requestCameraPermissionsAsync();
+            console.log(cameraStatus);
+            setHasCameraPermission(cameraStatus.status === 'granted');
+            console.log(hasCameraPermission);
+        })();
+    }, []);
+      
+    if( hasCameraPermission === false ) {
+        console.log("no permission");
+        alert("Nous n'avons pas accès à votre caméra");
+    }
+
+    // console.log('hasCameraPermission');
+    // console.log(hasCameraPermission);
+
+    return (
+        <View style={{flex:1}}>
+            <View style={styles.cameraContainer}>
+                <Camera 
+                ref={ref => setCamera(ref)}
+                type={type}
+                style={{flex: 1}}
+                ratio={'16:9'}
+                >
+                <View>
+                <Button 
+                    mode="contained"
+                    onPress={toggleCameraType}>Flip Camera</Button>
+                </View>
+                </Camera>
+            </View>
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    cameraContainer: {
+        flex: 1,
+        flexDirection: 'column',
+    },
+    fixedRatio: {
+        flex: 1,
+        aspectRatio: 1
+    },
+});
+
+export default HomeScreen;
