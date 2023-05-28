@@ -12,9 +12,6 @@ import { LogInContext } from '../contexts/LogInContext'
 const LoginScreen = () => {
     const { setIsUserLoggedIn } = useContext(LogInContext);
 
-    const theme = useTheme();
-    const { colors } = theme;
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -26,7 +23,6 @@ const LoginScreen = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then(userCredidentials => {
             const user = userCredidentials.user;
-            
             setIsUserLoggedIn(true);
         })
         .catch(err => {
@@ -157,14 +153,16 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'Husansans-Medium',
         fontSize: 25,
-        paddingBottom: 18
+        paddingBottom: 18,
+        color: theme.colors.black,
     },
     subtitle: {
         fontFamily: 'Poppins-SemiBold',
         fontSize: 14,
         paddingTop: 8,
         textAlign: 'center',
-        letterSpacing: 0.2
+        letterSpacing: 0.2,
+        color: theme.colors.black,
     },
     subtitleButton : {
         fontFamily: 'Poppins-SemiBold',
@@ -199,6 +197,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.lila,
         borderRadius: 14,
         borderColor: '#FFFFFF00',
+        color: theme.colors.black,
         borderWidth: 0,
     },
     labelButton: {
