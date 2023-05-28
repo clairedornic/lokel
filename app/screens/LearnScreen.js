@@ -6,7 +6,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import ChaptersList from '../components/learn/ChaptersList';
 import theme from '../../theme-design';
 
-const LearnScreen = () => {
+const LearnScreen = ({ navigation }) => {
     const [chapters, setChapters] = useState([]);
     
     async function getChapters() {
@@ -32,7 +32,7 @@ const LearnScreen = () => {
     }, []);
 
     return (
-        <ChaptersList chapters={chapters}></ChaptersList>
+        <ChaptersList chapters={chapters} navigation={navigation}></ChaptersList>
     )
 }
 
