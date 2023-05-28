@@ -5,7 +5,7 @@ import { Divider, Text, Button, TextInput, Checkbox } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { FIREBASE_APP } from '../config/firebase'
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { getFirestore, collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import theme from '../../theme-design';
 
 const RegisterScreen = () => {
@@ -209,12 +209,14 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'Husansans-Medium',
         fontSize: 25,
-        paddingBottom: 18
+        paddingBottom: 18,
+        color: theme.colors.black,
     },
     subtitle: {
         fontFamily: 'Poppins-SemiBold',
         fontSize: 14,
         paddingTop: 8,
+        color: theme.colors.black,
         textAlign: 'center',
         letterSpacing: 0.2
     },
