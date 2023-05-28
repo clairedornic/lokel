@@ -10,13 +10,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import { SignInContext } from './app/contexts/SignInContext'
+import { LogInContext } from './app/contexts/LogInContext'
 
 import LearnStack from './app/stacks/LearnStack';
 import ProfilStack from './app/stacks/ProfilStack';
 import HomeScreen from './app/screens/HomeScreen';
 import AuthStack from './app/stacks/AuthStack';
-import NavIcons from './app/components/NavIcons/NavIcons';
+import NavIcons from './app/components/nav/NavIcons';
 import theme from './theme-design';
 
 
@@ -54,7 +54,7 @@ const App = () => {
 	return (
 		<PaperProvider>
 			<NavigationContainer style={styles.nav}>
-			<SignInContext.Provider
+			<LogInContext.Provider
 				value={{ setIsUserLoggedIn }}
 			>
 				{isUserLoggedIn ? (
@@ -77,7 +77,7 @@ const App = () => {
 				) : (
 					<AuthStack/>
 				)}
-      		</SignInContext.Provider>
+      		</LogInContext.Provider>
 			</NavigationContainer>
 			<StatusBar style="auto" />
 		</PaperProvider>
