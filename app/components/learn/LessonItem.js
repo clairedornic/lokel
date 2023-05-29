@@ -20,7 +20,7 @@ const LessonItem = ({lesson, navigation}) => {
                         style={styles.iconContainer}
                         onPress={() => {
                             navigation.navigate('LessonScreen', {
-                              exercices: lesson.associed_exercices,
+                                lesson: lesson,
                             });
                         }}
                     >
