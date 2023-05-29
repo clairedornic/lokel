@@ -19,12 +19,8 @@ import AuthStack from './app/stacks/AuthStack';
 import NavIcons from './app/components/nav/NavIcons';
 import theme from './theme-design';
 
-
-LogBox.ignoreLogs([
-  'Non-serializable values were found in the navigation state',
-]);
-
 SplashScreen.preventAutoHideAsync();
+const Tab = createBottomTabNavigator();
 
 let customFonts = {
 	'Poppins-Light': require('./app/assets/fonts/Poppins-Light.ttf'),
@@ -38,17 +34,16 @@ let customFonts = {
 	'Husansans-Bold': require('./app/assets/fonts/Husansans-Bold.ttf'),
 };
 
-const Tab = createBottomTabNavigator();
-
 const App = () => {
 
-	// Know if user is logged in or not
 	const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 	
 	const [isLoaded] = useFonts(customFonts);
+	
 	if (!isLoaded) {
 		return null;
 	}
+
 	SplashScreen.hideAsync();
 
 	return (

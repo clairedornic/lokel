@@ -1,38 +1,31 @@
 import { useState, useEffect } from 'react';
-import { View, StyleSheet, SafeAreaView } from "react-native";
-import { Text } from 'react-native-paper';
-import { FIREBASE_APP, FIRESTORE_DB } from '../config/firebase'
-import { collection, getDocs } from 'firebase/firestore';
+import { getChapters } from '../api/getChapters';
 import ChaptersList from '../components/learn/ChaptersList';
-import theme from '../../theme-design';
 
-const LearnScreen = () => {
+const LearnScreen = ({ navigation }) => {
     const [chapters, setChapters] = useState([]);
-    
-    async function getChapters() {
-        try {
-            const chaptersCollectionRef = collection(FIRESTORE_DB, 'chapters');
-            const querySnapshot = await getDocs(chaptersCollectionRef);
-            
-            querySnapshot.forEach((chapter) => {
-                let newChapter = {
-                    id: chapter.id,
-                    data: chapter.data()
-                }
-                setChapters((currentChapters) => [ ...currentChapters, newChapter]);
-                
-            });
-        } catch (error) {
-            console.error('Une erreur s\'est produite lors de la récupération des leçons :', error);
-        }
-    }
 
     useEffect(() => {
-        getChapters();
+        const fetchChapters = async () => {
+            try {
+                const newChapters = await getChapters();
+                newChapters.forEach((chapter) => {
+                    let newChapter = {
+                        id: chapter.id,
+                        data: chapter.data()
+                    }
+                    setChapters((currentChapters) => [...currentChapters, newChapter]);
+                });
+            } catch (error) {
+                console.error('Une erreur s\'est produite lors de la récupération des chapitres :', error);
+            }
+        };
+    
+        fetchChapters();    
     }, []);
 
     return (
-        <ChaptersList chapters={chapters}></ChaptersList>
+        <ChaptersList chapters={chapters} navigation={navigation}></ChaptersList>
     )
 }
 
