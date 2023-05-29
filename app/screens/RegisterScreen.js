@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FIREBASE_APP } from '../config/firebase'
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { LogInContext } from '../contexts/LogInContext'
 import theme from '../../theme-design';
 
 const RegisterScreen = () => {
@@ -41,6 +42,8 @@ const RegisterScreen = () => {
                     email: currentUser.email,
                     lastName: lastName,
                     firstName: firstName,
+                    current_lesson: 'BySA2bA5IYnGoq4T11SU',
+                    status_current_lesson: 1
                 })
 
                 setIsUserLoggedIn(true);
@@ -131,11 +134,11 @@ const RegisterScreen = () => {
                     />
                     <View style={styles.textWithButtons}>
                         <Text style={styles.textNextToButtons}>J'accepte les </Text>
-                        <Button mode="text" labelStyle={styles.subtitleButton} onPress={() => console.log('Pressed')}>
+                        <Button mode="text" labelStyle={styles.subtitleButton}>
                              Termes & Conditions 
                         </Button> 
                         <Text style={styles.textNextToButtons}> et la </Text>
-                        <Button mode="text" labelStyle={styles.subtitleButton} onPress={() => console.log('Pressed')}>
+                        <Button mode="text" labelStyle={styles.subtitleButton}>
                             Politique de confidentialité
                         </Button>
                     </View>

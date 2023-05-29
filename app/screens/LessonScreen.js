@@ -6,7 +6,7 @@ import theme from '../../theme-design';
 
 const LessonScreen = ({route, navigation}) => {
     const { lesson } = route.params;
-    
+
     return (
         <View style={styles.container}>
             <TouchableHighlight 
@@ -61,6 +61,7 @@ const LessonScreen = ({route, navigation}) => {
                         style={styles.button}
                         onPress={() => {
                             navigation.navigate('ExercisesScreen', {
+                                lessons_title: lesson.title,
                                 exercises: lesson.associed_exercices,
                             });
                         }}
