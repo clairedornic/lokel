@@ -6,11 +6,6 @@ export async function getChapters() {
         const chaptersCollectionRef = collection(FIRESTORE_DB, 'chapters');
         const querySnapshot = await getDocs(chaptersCollectionRef);
         
-        console.log('chaptersCollectionRef');
-        console.log(chaptersCollectionRef);
-        console.log('querySnapshot');
-        console.log(querySnapshot);
-
         if (!querySnapshot.empty) {
             return querySnapshot;
         } else {
