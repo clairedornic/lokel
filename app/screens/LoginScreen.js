@@ -5,7 +5,6 @@ import { Divider, Text, Button, TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { FIREBASE_APP } from '../config/firebase'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useTheme } from 'react-native-paper';
 import theme from '../../theme-design';
 import { LogInContext } from '../contexts/LogInContext'
 
