@@ -1,36 +1,22 @@
 import { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableHighlight, Image } from "react-native";
 import { Text } from 'react-native-paper';
-import { doc, getDoc, collection } from 'firebase/firestore';
-import { FIRESTORE_DB } from '../config/firebase'
+import { getExerciseById } from '../api/getExerciseById';
 import theme from '../../theme-design';
 
 const LessonScreen = ({route, navigation}) => {
     const { exercices } = route.params;
-
-    async function getExerciceById(exerciceId) {
-        try {
-          const documentRef = doc(FIRESTORE_DB, 'exercises', exerciceId);
-          const documentSnapshot = await getDoc(documentRef);
-          console.log('documentSnapshot');
-          console.log(documentSnapshot.exists());
-
-          if (documentSnapshot.exists()) {
-            const documentData = documentSnapshot.data();
-            return documentData;
-          } else {
-            return null;
-          }
-        } catch (error) {
-          console.error('Une erreur s\'est produite lors de la récupération du document :', error);
-        }
-    }
+    const [allExercises, setAllExercises] = useState([]);
 
     useEffect(() => {
-        exercices.forEach(exercice => {
-            const data = getExerciceById(exercice);
-            console.log(data);
-         });
+        const fetchExercises = async () => {
+            for (const exerciceId of exercices) {
+                const exo = await getExerciseById(exerciceId);
+                // console.log(exo);
+            }
+        };
+    
+        fetchExercises();
     }, []);
 
     return (
