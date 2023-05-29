@@ -22,7 +22,7 @@ Ce projet vise à rendre le langage des signes plus accessible en le transforman
 
 Ce projet est développé en utilisant les technologies suivantes :
 
-- **React Native** : Un framework JavaScript pour le développement d'applications mobiles multiplateformes. Il permet de créer des interfaces utilisateur réactives et dynamiques.
+- **React Native** : Une librairie JavaScript pour le développement d'applications mobiles multiplateformes. Il permet de créer des interfaces utilisateur réactives et dynamiques.
 
 - **Firebase** : Une plateforme de développement d'applications qui fournit des services tels que l'authentification des utilisateurs, la base de données en temps réel, le stockage de fichiers et les notifications push.
 
