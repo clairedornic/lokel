@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { View, StyleSheet } from "react-native"
-import { Text, Button } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { Camera, CameraType } from 'expo-camera';
-import theme from '../../theme-design';
 
 const HomeScreen = () => {
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -26,9 +25,6 @@ const HomeScreen = () => {
         console.log("no permission");
         alert("Nous n'avons pas accès à votre caméra");
     }
-
-    // console.log('hasCameraPermission');
-    // console.log(hasCameraPermission);
 
     return (
         <View style={{flex:1}}>
