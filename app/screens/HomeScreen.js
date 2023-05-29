@@ -15,14 +15,11 @@ const HomeScreen = () => {
     useEffect(() => {
         (async () => {
             const cameraStatus = await Camera.requestCameraPermissionsAsync();
-            console.log(cameraStatus);
             setHasCameraPermission(cameraStatus.status === 'granted');
-            console.log(hasCameraPermission);
         })();
     }, []);
       
     if( hasCameraPermission === false ) {
-        console.log("no permission");
         alert("Nous n'avons pas accès à votre caméra");
     }
 
