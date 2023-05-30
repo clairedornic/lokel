@@ -37,8 +37,7 @@ const RecognizeSignExercise = ({onExerciseComplete, exercice}) => {
 
     return (
         <>
-            <Text>Recognize exo {exercice.number}</Text>
-            <View>
+            <View style={styles.signsGrid}>
             {signLinks.map((sign) => (
                 <SignLesson 
                     sign={sign}
@@ -52,5 +51,16 @@ const RecognizeSignExercise = ({onExerciseComplete, exercice}) => {
         </>
     )
 }
+
+const styles = StyleSheet.create({
+    signsGrid: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: theme.size.full
+    },
+});
 
 export default RecognizeSignExercise;
