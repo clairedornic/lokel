@@ -83,7 +83,6 @@ const LoginScreen = () => {
                     Se connecter
             </Button>
             <View style={styles.containerDivider}>
-                {/* <Divider style={styles.divider}></Divider> */}
                 <Text>Ou</Text>
             </View>
             <View>
