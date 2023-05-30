@@ -51,25 +51,17 @@ const ExercisesScreen = ({route, navigation}) => {
                 {allExercises.length > 0 && currentExerciseIndex < allExercises.length ? (
                     <>
                         <Text style={styles.exerciseInstruction}>{allExercises[currentExerciseIndex].instruction}</Text>
-                        <RecognizeSignExercise onExerciseComplete={handleExerciseComplete} exercice={allExercises[currentExerciseIndex]}></RecognizeSignExercise>
+                        <RecognizeSignExercise 
+                            onExerciseComplete={handleExerciseComplete} 
+                            exercice={allExercises[currentExerciseIndex]}
+                            currentExerciseIndex={currentExerciseIndex}
+                        ></RecognizeSignExercise>
                     </>
                 ) : (
                     
                     <Text>Tous les exercices sont terminés.</Text>
                 )}
 
-            </View>
-            <View style={styles.exerciseFooter}>
-                <Button 
-                    mode="contained"
-                    buttonColor={theme.colors.violet}
-                    textColor={theme.colors.white}
-                    labelStyle={styles.labelButton}
-                    style={styles.button}
-                    onPress={handleExerciseComplete}
-                    >
-                        Valider
-                </Button>
             </View>
         </View>
     )
@@ -127,18 +119,6 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         paddingRight: 45,
         marginBottom: 10,
-    },
-    labelButton: {
-        color: theme.colors.white,
-        fontFamily: 'Poppins-Medium',
-        fontSize: 20,
-        paddingTop: 8,
-        paddingBottom: 2,
-        width: theme.size.full,
-    },
-    button: {
-        borderRadius: 50,
-        marginTop: 23,
     },
 });
 export default ExercisesScreen;

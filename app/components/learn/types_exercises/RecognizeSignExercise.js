@@ -5,23 +5,13 @@ import { getSignById } from '../../../api/getSignById';
 import SignLesson from '../SignLesson';
 import theme from '../../../../theme-design';
 
-const RecognizeSignExercise = ({onExerciseComplete, exercice}) => {
+const RecognizeSignExercise = ({onExerciseComplete, exercice, currentExerciseIndex}) => {
 
     const [isCorrect, setIsCorrect] = useState(false);
     const [signLinks, setSignLinks] = useState([]);
-
-    const handleComplete = () => {
-        onExerciseComplete();
-    };
-
-    const handleVerificationSign = (selectedSign) => {
-        if (selectedSign === exercice.sign_to_find) {
-            setIsCorrect(true);
-        } else {
-            setIsCorrect(false);
-        }
-    }
-
+    const [activeSign, setActiveSign] = useState(null);
+    const [stateButton, setStateButton] = useState('blocked');
+    
     const fetchSigns = async () => {
 
         const links = await Promise.all(
@@ -31,23 +21,71 @@ const RecognizeSignExercise = ({onExerciseComplete, exercice}) => {
         setSignLinks(links);
     };
 
+    const handleSignPress = (selectedSign) => {
+        setActiveSign(selectedSign);
+        setStateButton('active');
+    }
+
+    const handleVerificationSign = () => {
+        
+        if (activeSign === exercice.sign_to_find) {
+            setIsCorrect(true);
+            setStateButton('correct');
+        } else {
+            setIsCorrect(false);
+            setStateButton('incorrect');
+        }
+    }
+
+    const handleComplete = () => {
+        onExerciseComplete();
+    };
+
     useEffect(() => {
         fetchSigns();
     }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchSigns();
+            setActiveSign(null);
+            setStateButton('blocked');
+        };
+    
+        fetchData();
+    }, [currentExerciseIndex]);
 
     return (
         <>
             <View style={styles.signsGrid}>
             {signLinks.map((sign) => (
                 <SignLesson 
+                    key={sign.name}
                     sign={sign}
-                    handleSignPress={handleVerificationSign}
+                    handleSignPress={handleSignPress}
+                    setStateButton={setStateButton}
+                    stateButton={stateButton}
                 />
             ))}
             </View>
-            {/* {isCorrect && <Text>Bravo, vous avez trouvé le bon signe !</Text>}
-            {!isCorrect && <Text>Ce n'est pas le bon signe, essayez à nouveau.</Text>}
-            <Button onPress={handleComplete}>Terminer l'exercice</Button> */}
+            <View style={styles.exerciseFooter}>
+            <Button
+                mode="contained"
+                buttonColor={theme.colors.violet}
+                textColor={theme.colors.white}
+                labelStyle={styles.labelButton}
+                style={[
+                    styles.button,
+                    stateButton === 'blocked' && { backgroundColor: theme.colors.gray },
+                    stateButton === 'active' && { backgroundColor: theme.colors.violet },
+                    stateButton === 'correct' && { backgroundColor: theme.colors.green },
+                    stateButton === 'incorrect' && { backgroundColor: theme.colors.orange }
+                ]}
+                onPress={stateButton === 'correct' || stateButton === 'incorrect' ? handleComplete : handleVerificationSign}
+            >
+            {stateButton === 'correct' || stateButton === 'incorrect' ? 'Continuer' : 'Valider'}
+            </Button>
+            </View>
         </>
     )
 }
@@ -60,6 +98,18 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
       alignItems: 'center',
       width: theme.size.full
+    },
+    labelButton: {
+        color: theme.colors.white,
+        fontFamily: 'Poppins-Medium',
+        fontSize: 20,
+        paddingTop: 8,
+        paddingBottom: 2,
+        width: theme.size.full,
+    },
+    button: {
+        borderRadius: 50,
+        marginTop: 23,
     },
 });
 

@@ -8,7 +8,8 @@ export async function getSignById(signId) {
 
       if (documentSnapshot.exists()) {
         const documentData = documentSnapshot.data();
-        return documentData;
+        const signDataWithId = { id: documentSnapshot.id, ...documentData };
+        return signDataWithId;
       } else {
         return null;
       }

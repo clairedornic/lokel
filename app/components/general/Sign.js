@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderRadius: 14,
       overflow: "hidden",
-      marginBottom: 25,
     },
     sign: {
       alignSelf: 'center',
