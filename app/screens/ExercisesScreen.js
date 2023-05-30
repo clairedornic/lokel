@@ -126,6 +126,19 @@ const styles = StyleSheet.create({
         letterSpacing: 0.2,
         textAlign: 'left',
         paddingRight: 45,
-    }
+        marginBottom: 10,
+    },
+    labelButton: {
+        color: theme.colors.white,
+        fontFamily: 'Poppins-Medium',
+        fontSize: 20,
+        paddingTop: 8,
+        paddingBottom: 2,
+        width: theme.size.full,
+    },
+    button: {
+        borderRadius: 50,
+        marginTop: 23,
+    },
 });
 export default ExercisesScreen;
