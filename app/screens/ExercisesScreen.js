@@ -15,7 +15,7 @@ const ExercisesScreen = ({route, navigation}) => {
         if (currentExerciseIndex < allExercises.length - 1) {
             setCurrentExerciseIndex(currentExerciseIndex + 1);
         } else {
-            console.log("Leçon terminée!");
+             navigation.navigate('EndLessonScreen');
         }
     };
 

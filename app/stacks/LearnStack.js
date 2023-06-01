@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LearnScreen from '../screens/LearnScreen';
 import LessonScreen from '../screens/LessonScreen';
 import ExercisesScreen from '../screens/ExercisesScreen';
+import EndLessonScreen from '../screens/EndLessonScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,11 @@ const LearnStack = () => {
 			<Stack.Screen 
 				name="ExercisesScreen" 
 				component={ExercisesScreen} 
+				options={{ headerShown: false }}
+			/>
+			<Stack.Screen 
+				name="EndLessonScreen" 
+				component={EndLessonScreen} 
 				options={{ headerShown: false }}
 			/>
 		</Stack.Navigator>

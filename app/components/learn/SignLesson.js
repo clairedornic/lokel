@@ -13,7 +13,13 @@ const SignLesson = ({sign, handleSignPress, setStateButton, stateButton}) => {
             setStateButton('active');
             handleSignPress(signId);
         }
-      };
+    };
+
+    useEffect(() => {
+        if (stateButton === 'blocked') {
+            setIsActive(false);
+        }
+    }, [stateButton]);
       
     return (
         <TouchableOpacity onPress={() => handlePress(sign.id)}>
