@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableHighlight, Image } from "react-native";
 import { Divider, Text, Button } from 'react-native-paper';
 import { getExerciseById } from '../api/getExerciseById';
-import RecognizeSignExercise from '../components/learn/types_exercises/RecognizeSignExercise'
+import RecognizeSignExercise from '../components/learn/types_exercises/RecognizeSignExercise';
 import theme from '../../theme-design';
 
 const ExercisesScreen = ({route, navigation}) => {
-    const { lessons_title, exercises } = route.params;
+    const { lesson, exercises } = route.params;
     const [exerciseSuccesses, setExerciseSuccesses] = useState([]);    
     const [allExercises, setAllExercises] = useState([]);
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -32,7 +32,8 @@ const ExercisesScreen = ({route, navigation}) => {
         if (exerciseSuccesses.length > 0 && currentExerciseIndex >= allExercises.length - 1) {
           
           navigation.navigate('EndLessonScreen', {
-            exerciseSuccesses: exerciseSuccesses
+            exerciseSuccesses: exerciseSuccesses,
+            lesson: lesson
           });
         } else if (exerciseSuccesses.length > 0 ) {
             setCurrentExerciseIndex(currentExerciseIndex + 1);
@@ -51,7 +52,7 @@ const ExercisesScreen = ({route, navigation}) => {
                         source={require('../assets/img/arrow-back.png')}
                     ></Image>
                 </TouchableHighlight>
-                <Text style={styles.lessonTitle}>{lessons_title}</Text>
+                <Text style={styles.lessonTitle}>{lesson.title}</Text>
                 <Divider style={styles.divider}></Divider>
             </View>
             <View style={styles.exerciseContent}>
