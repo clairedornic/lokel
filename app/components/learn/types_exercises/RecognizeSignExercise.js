@@ -6,7 +6,7 @@ import SignLesson from '../SignLesson';
 import theme from '../../../../theme-design';
 
 const RecognizeSignExercise = ({onExerciseComplete, exercice, currentExerciseIndex}) => {
-    const [isCorrect, setIsCorrect] = useState(false);
+    const [exerciseSuccess, setExerciseSuccess] = useState(true);
     const [signLinks, setSignLinks] = useState([]);
     const [activeSign, setActiveSign] = useState(null);
     const [stateButton, setStateButton] = useState('blocked');;
@@ -25,17 +25,19 @@ const RecognizeSignExercise = ({onExerciseComplete, exercice, currentExerciseInd
     }
 
     const handleVerificationSign = () => {
-        if (activeSign === exercice.sign_to_find) {
-            setIsCorrect(true);
+        if (activeSign === exercice.sign_to_find ) {
             setStateButton('correct');
+        } else if (activeSign !== exercice.sign_to_find && exerciseSuccess === true) {
+            
+            setExerciseSuccess(false);
+            setStateButton('incorrect');
         } else {
-            setIsCorrect(false);
             setStateButton('incorrect');
         }
     }
 
     const handleComplete = () => {
-        onExerciseComplete();
+        onExerciseComplete(exerciseSuccess);
     };
 
     useEffect(() => {

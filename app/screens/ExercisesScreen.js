@@ -7,16 +7,12 @@ import theme from '../../theme-design';
 
 const ExercisesScreen = ({route, navigation}) => {
     const { lessons_title, exercises } = route.params;
-
+    const [exerciseSuccesses, setExerciseSuccesses] = useState([]);    
     const [allExercises, setAllExercises] = useState([]);
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
 
-    const handleExerciseComplete = () => {
-        if (currentExerciseIndex < allExercises.length - 1) {
-            setCurrentExerciseIndex(currentExerciseIndex + 1);
-        } else {
-             navigation.navigate('EndLessonScreen');
-        }
+    const handleExerciseComplete = (exerciseSuccess) => {
+        setExerciseSuccesses([...exerciseSuccesses, exerciseSuccess]);
     };
 
     const fetchExercises = async () => {
@@ -31,6 +27,17 @@ const ExercisesScreen = ({route, navigation}) => {
     useEffect(() => {
         fetchExercises(exercises);
     }, []);
+
+    useEffect(() => {
+        if (exerciseSuccesses.length > 0 && currentExerciseIndex >= allExercises.length - 1) {
+          
+          navigation.navigate('EndLessonScreen', {
+            exerciseSuccesses: exerciseSuccesses
+          });
+        } else if (exerciseSuccesses.length > 0 ) {
+            setCurrentExerciseIndex(currentExerciseIndex + 1);
+        }
+      }, [exerciseSuccesses]);
 
     return (
         <View style={styles.container}>
@@ -48,7 +55,7 @@ const ExercisesScreen = ({route, navigation}) => {
                 <Divider style={styles.divider}></Divider>
             </View>
             <View style={styles.exerciseContent}>
-                {allExercises.length > 0 && currentExerciseIndex < allExercises.length ? (
+                {currentExerciseIndex < allExercises.length ? (
                     <>
                         <Text style={styles.exerciseInstruction}>{allExercises[currentExerciseIndex].instruction}</Text>
                         <RecognizeSignExercise 
