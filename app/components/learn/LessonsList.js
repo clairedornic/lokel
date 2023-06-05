@@ -1,14 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { FlatList, StyleSheet, SafeAreaView, View } from "react-native";
 import { Text } from 'react-native-paper';
 import { getLessonById } from '../../api/getLessonById';
+import { LogInContext } from '../../contexts/LogInContext'
 import LessonItem from './LessonItem';
 import theme from '../../../theme-design';
 
 const LessonsList = ({ chapter, navigation }) => {
 
     const [lessons, setLessons] = useState([]);
-    const renderItem = ({ item }) => <LessonItem lesson={item} navigation={navigation}/>;
+    const { currentLessonUser, currentStateLessonUser } = useContext(LogInContext);
+    
+    const renderItem = ({ item, index }) => {
+      const isRightAligned = index % 2 === 1;
+      return <LessonItem lesson={item} state={getLessonState(item)} navigation={navigation} isRightAligned={isRightAligned} />;
+    };
 
     async function getLessons() {
         const newLessons = [];
@@ -24,6 +30,16 @@ const LessonsList = ({ chapter, navigation }) => {
         setLessons(newLessons);
     }
 
+    const getLessonState = (lesson) => {
+      if (lesson.id === currentLessonUser) {
+          return currentStateLessonUser;
+      } else if (lesson.number < currentLessonUser) {
+          return 3;
+      } else {
+          return 0;
+      }
+    };
+
     useEffect(() => {
         getLessons();
     }, []);
@@ -31,19 +47,19 @@ const LessonsList = ({ chapter, navigation }) => {
 
     return (
       <>
-        <View style={styles.chapterHeader}>
-          <Text style={styles.chapterTitle}>{chapter.data.title}</Text>
-          <Text style={styles.lessonsCount}>{lessons.length} leçons</Text>
-        </View>
-        <SafeAreaView style={styles.container}>
+          <View style={styles.chapterHeader}>
+            <Text style={styles.chapterTitle}>{chapter.data.title}</Text>
+            <Text style={styles.lessonsCount}>{lessons.length} leçons</Text>
+          </View>
+          <SafeAreaView style={styles.container}>
             <FlatList
                 data={lessons}
                 renderItem={renderItem}
                 keyExtractor={lesson => lesson.number}
                 style={styles.lessonsList}
             />
-        </SafeAreaView>
-      </>
+          </SafeAreaView>
+        </>
     )
 }
 
@@ -69,6 +85,7 @@ const styles = StyleSheet.create({
   },
   lessonsList: {
     alignItems: 'baseline',
+    width: theme.size.full,
   }
 });
 

@@ -1,14 +1,13 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { FIRESTORE_DB } from '../config/firebase'
 
-export async function getLessonById(lessonId) {
+export async function getUserById(userId) {
     try {
-      const documentRef = doc(FIRESTORE_DB, 'lessons', lessonId); // Remplacez 'collectionName' par le nom de votre collection
+      const documentRef = doc(FIRESTORE_DB, 'users', userId);
       const documentSnapshot = await getDoc(documentRef);
-      
+
       if (documentSnapshot.exists()) {
         const documentData = documentSnapshot.data();
-        documentData.id = lessonId;
         return documentData;
       } else {
         return null;

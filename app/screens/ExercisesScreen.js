@@ -2,21 +2,17 @@ import { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableHighlight, Image } from "react-native";
 import { Divider, Text, Button } from 'react-native-paper';
 import { getExerciseById } from '../api/getExerciseById';
-import RecognizeSignExercise from '../components/learn/types_exercises/RecognizeSignExercise'
+import RecognizeSignExercise from '../components/learn/types_exercises/RecognizeSignExercise';
 import theme from '../../theme-design';
 
 const ExercisesScreen = ({route, navigation}) => {
-    const { lessons_title, exercises } = route.params;
-
+    const { lesson, exercises } = route.params;
+    const [exerciseSuccesses, setExerciseSuccesses] = useState([]);    
     const [allExercises, setAllExercises] = useState([]);
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
 
-    const handleExerciseComplete = () => {
-        if (currentExerciseIndex < allExercises.length - 1) {
-            setCurrentExerciseIndex(currentExerciseIndex + 1);
-        } else {
-            console.log("Leçon terminée!");
-        }
+    const handleExerciseComplete = (exerciseSuccess) => {
+        setExerciseSuccesses([...exerciseSuccesses, exerciseSuccess]);
     };
 
     const fetchExercises = async () => {
@@ -32,6 +28,18 @@ const ExercisesScreen = ({route, navigation}) => {
         fetchExercises(exercises);
     }, []);
 
+    useEffect(() => {
+        if (exerciseSuccesses.length > 0 && currentExerciseIndex >= allExercises.length - 1) {
+          
+          navigation.navigate('EndLessonScreen', {
+            exerciseSuccesses: exerciseSuccesses,
+            lesson: lesson
+          });
+        } else if (exerciseSuccesses.length > 0 ) {
+            setCurrentExerciseIndex(currentExerciseIndex + 1);
+        }
+      }, [exerciseSuccesses]);
+
     return (
         <View style={styles.container}>
             <View style={styles.exerciseHeader}>
@@ -44,11 +52,11 @@ const ExercisesScreen = ({route, navigation}) => {
                         source={require('../assets/img/arrow-back.png')}
                     ></Image>
                 </TouchableHighlight>
-                <Text style={styles.lessonTitle}>{lessons_title}</Text>
+                <Text style={styles.lessonTitle}>{lesson.title}</Text>
                 <Divider style={styles.divider}></Divider>
             </View>
             <View style={styles.exerciseContent}>
-                {allExercises.length > 0 && currentExerciseIndex < allExercises.length ? (
+                {currentExerciseIndex < allExercises.length ? (
                     <>
                         <Text style={styles.exerciseInstruction}>{allExercises[currentExerciseIndex].instruction}</Text>
                         <RecognizeSignExercise 

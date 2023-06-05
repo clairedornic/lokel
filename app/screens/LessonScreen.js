@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableHighlight, Image, FlatList, SafeAreaView } from "react-native";
 import { Divider, Text, Button } from 'react-native-paper';
-import { getExerciseById } from '../api/getExerciseById';
+import HeaderLesson from '../components/learn/HeaderLesson';
+
 import theme from '../../theme-design';
 
 const LessonScreen = ({route, navigation}) => {
@@ -19,19 +19,7 @@ const LessonScreen = ({route, navigation}) => {
                 ></Image>
             </TouchableHighlight>
             <View style={styles.containerContent}>
-                <View style={styles.lessonIconContainer}>
-                    <Image 
-                        style={styles.iconlesson}
-                        source={{
-                            uri: lesson.icon
-                        }}
-                    ></Image>
-                </View>
-                <View style={styles.lessonHeader}>
-                    <Text style={styles.lessonNumber}>Leçon {lesson.number}</Text>
-                    <Divider style={styles.divider}></Divider>
-                    <Text style={styles.lessonTitle}>{lesson.title}</Text>
-                </View>
+                <HeaderLesson lesson={lesson}></HeaderLesson>
                 <View style={styles.lessonContent}>
                     <Text style={styles.goals}>Objectifs :</Text>
                     <SafeAreaView style={styles.containerList}>
@@ -61,7 +49,7 @@ const LessonScreen = ({route, navigation}) => {
                         style={styles.button}
                         onPress={() => {
                             navigation.navigate('ExercisesScreen', {
-                                lessons_title: lesson.title,
+                                lesson: lesson,
                                 exercises: lesson.associed_exercices,
                             });
                         }}

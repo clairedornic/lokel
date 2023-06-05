@@ -1,100 +1,62 @@
 import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
 import { Text } from 'react-native-paper';
 import theme from '../../../theme-design';
+import BlockedLesson from "./states_lessons/BlockedLesson";
+import InProgressLesson from "./states_lessons/InProgressLesson";
+import EndLesson from "./states_lessons/EndLesson";
+import CurrentLesson from "./states_lessons/CurrentLesson";
 
-const LessonItem = ({lesson, navigation}) => {
+const LessonItem = ({lesson, state, navigation, isRightAligned}) => {
 
-    return (
-        <View style={styles.cardContainer}>
-            <Image 
-                style={styles.illu}
-                source={require('../../assets/img/lesson-current.png')}
-            ></Image>
-            <View style={styles.card}>
-                <View style={styles.cardContent}>
-                    <Text style={styles.numberLesson}>Leçon {lesson.number}</Text>
-                    <Text style={styles.titleLesson}>{lesson.title}</Text>
+    const containerStyle = isRightAligned ? styles.rightAlignedContainer : styles.cardContainer;
+    
+    switch (state) {
+        case 0:
+            return (
+                <View style={containerStyle}>
+                    <BlockedLesson lesson={lesson} navigation={navigation} />
                 </View>
-                <View style={styles.link}>
-                    <TouchableHighlight 
-                        style={styles.iconContainer}
-                        onPress={() => {
-                            navigation.navigate('LessonScreen', {
-                                lesson: lesson,
-                            });
-                        }}
-                    >
-                        <Image 
-                        style={styles.icon}
-                        source={require('../../assets/img/play.png')}
-                        ></Image>
-                    </TouchableHighlight >
+            );
+        case 1:
+            return (
+                <View style={containerStyle}>
+                    <CurrentLesson lesson={lesson} navigation={navigation} />
                 </View>
-            </View>
-        </View>
-    )
+            );
+        case 2:
+            return (
+                <View style={containerStyle}>
+                    <InProgressLesson lesson={lesson} navigation={navigation} />
+                </View>
+            );
+        case 3:
+            return (
+                <View style={containerStyle}>
+                    <EndLesson lesson={lesson} navigation={navigation} />
+                </View>
+            );
+        default:
+            return null;
+    }
 }
 
 const styles = StyleSheet.create({
     cardContainer: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        width: theme.size.full,
         paddingBottom: 45,
-        paddingLeft: 1
+        paddingLeft: 1,
     },
-    illu: {
+    rightAlignedContainer: {
         display: 'flex',
-        alignSelf: 'flex-end',
-        height: 55,
-        width: 65,
-        resizeMode: 'contain',
-        marginRight: 25
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        width: theme.size.full,
+        paddingBottom: 45,
+        paddingLeft: 1,
     },
-    card: {
-      display: 'flex',
-      flexDirection: 'row',
-      paddingHorizontal: 17,
-      paddingVertical: 15,
-      backgroundColor: theme.colors.lila,
-      borderRadius: 14,
-      elevation: 2,
-      shadowColor: '#000000',
-    },
-    cardContent: {
-        flexDirection: 'column',
-        paddingRight: 30
-    },
-    link:{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    iconContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: theme.colors.violet,
-        height: 45,
-        width: 45,
-        borderRadius: 100
-    },
-    numberLesson: {
-        fontFamily: 'Poppins',
-        fontSize: 16,
-        color: theme.colors.black,
-        paddingBottom: 0
-    },
-    titleLesson: {
-        fontFamily: 'Poppins-Bold',
-        fontSize: 18,
-        color: theme.colors.black,
-        maxWidth: 153
-    },
-    icon:{
-        height: 17,
-        resizeMode: 'contain',
-        marginLeft: 3
-    }
 });
 
 export default LessonItem;
