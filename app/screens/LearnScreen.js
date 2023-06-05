@@ -25,6 +25,7 @@ const LearnScreen = ({ navigation }) => {
     }, []);
 
     return (
+
         <ChaptersList chapters={chapters} navigation={navigation}></ChaptersList>
     )
 }

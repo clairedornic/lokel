@@ -1,15 +1,16 @@
 import React, {useContext} from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { View, Image, StyleSheet } from "react-native";
 import { Divider, Text, Button, TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { FIREBASE_APP } from '../config/firebase'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import theme from '../../theme-design';
 import { LogInContext } from '../contexts/LogInContext'
+import { getUserById } from '../api/getUserById';
+import theme from '../../theme-design';
 
 const LoginScreen = () => {
-    const { setIsUserLoggedIn } = useContext(LogInContext);
+    const { setIsUserLoggedIn, setCurrentLessonUser, currentLessonUser, setCurrentStateLessonUser, currentStateLessonUser } = useContext(LogInContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,11 +18,20 @@ const LoginScreen = () => {
     const auth = getAuth(FIREBASE_APP);
     const navigation = useNavigation();
 
+
+    const handleGetUserInformations = async (userId) => {
+        const userInfos = await getUserById(userId);
+        setCurrentLessonUser(userInfos.current_lesson);
+        setCurrentStateLessonUser(userInfos.status_current_lesson);
+    };
+
     const handleLogin = async () => {
 
         signInWithEmailAndPassword(auth, email, password)
         .then(userCredidentials => {
             const user = userCredidentials.user;
+            handleGetUserInformations(user.uid);
+            
             setIsUserLoggedIn(true);
         })
         .catch(err => {

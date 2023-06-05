@@ -10,7 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import { LogInContext } from './app/contexts/LogInContext'
+import { LogInContext } from './app/contexts/LogInContext';
 
 import LearnStack from './app/stacks/LearnStack';
 import ProfilStack from './app/stacks/ProfilStack';
@@ -37,7 +37,8 @@ let customFonts = {
 const App = () => {
 
 	const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-	
+	const [currentLessonUser, setCurrentLessonUser] = useState();
+	const [currentStateLessonUser, setCurrentStateLessonUser] = useState();
 	const [isLoaded] = useFonts(customFonts);
 	
 	if (!isLoaded) {
@@ -49,30 +50,30 @@ const App = () => {
 	return (
 		<PaperProvider>
 			<NavigationContainer style={styles.nav}>
-			<LogInContext.Provider
-				value={{ setIsUserLoggedIn }}
-			>
-				{isUserLoggedIn ? (
-					<Tab.Navigator
-					screenOptions={({ route }) => ({
-						tabBarStyle: { height: 70, borderTopColor: '#DEDEDE', borderTopWidth: 1, elevation: 0 },
-						tabBarItemStyle: { paddingTop: 4 },
-						tabBarIcon: ({ focused }) => {
-							return <NavIcons color={theme.colors.violet} iconName={route.name} focused={focused}></NavIcons>;
-						},
-						tabBarLabel: ({ tintColor, focused }) =>
-						focused ? (<Text style={{ color: theme.colors.violet, fontSize: 16, borderBottomWidth: 3, borderBottomColor: theme.colors.violet, paddingBottom: 0, paddingTop: 2, fontFamily: 'Poppins-Bold' }} >{route.name}</Text>) : (<Text style={{ color: theme.colors.violet, fontSize: 16, borderBottomWidth: 3, borderBottomColor: theme.colors.transparent, paddingBottom: 0, paddingTop: 2, fontFamily: 'Poppins' }} >{route.name}</Text>),
-					})}
-					initialRouteName="Traduire"
-					>
-						<Tab.Screen name="Apprendre" component={LearnStack} options={{ headerShown: false }} />
-						<Tab.Screen name="Traduire" component={HomeScreen} options={{ headerShown: false }} />
-						<Tab.Screen name="Profil" component={ProfilStack} options={{ headerShown: false }}/>
-					</Tab.Navigator>
-				) : (
-					<AuthStack/>
-				)}
-      		</LogInContext.Provider>
+				<LogInContext.Provider
+					value={{ setIsUserLoggedIn, setCurrentLessonUser, currentLessonUser, setCurrentStateLessonUser, currentStateLessonUser}}
+				>
+					{isUserLoggedIn ? (
+								<Tab.Navigator
+								screenOptions={({ route }) => ({
+									tabBarStyle: { height: 70, borderTopColor: '#DEDEDE', borderTopWidth: 1, elevation: 0 },
+									tabBarItemStyle: { paddingTop: 4 },
+									tabBarIcon: ({ focused }) => {
+										return <NavIcons color={theme.colors.violet} iconName={route.name} focused={focused}></NavIcons>;
+									},
+									tabBarLabel: ({ tintColor, focused }) =>
+									focused ? (<Text style={{ color: theme.colors.violet, fontSize: 16, borderBottomWidth: 3, borderBottomColor: theme.colors.violet, paddingBottom: 0, paddingTop: 2, fontFamily: 'Poppins-Bold' }} >{route.name}</Text>) : (<Text style={{ color: theme.colors.violet, fontSize: 16, borderBottomWidth: 3, borderBottomColor: theme.colors.transparent, paddingBottom: 0, paddingTop: 2, fontFamily: 'Poppins' }} >{route.name}</Text>),
+								})}
+								initialRouteName="Traduire"
+								>
+									<Tab.Screen name="Apprendre" component={LearnStack} options={{ headerShown: false }} />
+									<Tab.Screen name="Traduire" component={HomeScreen} options={{ headerShown: false }} />
+									<Tab.Screen name="Profil" component={ProfilStack} options={{ headerShown: false }}/>
+								</Tab.Navigator>
+					) : (
+						<AuthStack/>
+					)}
+				</LogInContext.Provider>
 			</NavigationContainer>
 			<StatusBar style="auto" />
 		</PaperProvider>
