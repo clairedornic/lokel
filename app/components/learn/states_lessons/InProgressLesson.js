@@ -37,7 +37,7 @@ const InProgressLesson = ({lesson, navigation}) => {
 const styles = StyleSheet.create({
     cardContainer: {
         minWidth: 258,
-        paddingTop: 45,
+        paddingTop: 15,
     },
     illu: {
         display: 'flex',
