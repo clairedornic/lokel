@@ -10,7 +10,7 @@ import { getUserById } from '../api/getUserById';
 import theme from '../../theme-design';
 
 const LoginScreen = () => {
-    const { setIsUserLoggedIn, setCurrentLessonUser, currentLessonUser, setCurrentStateLessonUser, currentStateLessonUser } = useContext(LogInContext);
+    const { setIsUserLoggedIn, setCurrentLessonUser, setUserLoggedInId, setCurrentStateLessonUser, currentStateLessonUser } = useContext(LogInContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,6 +30,8 @@ const LoginScreen = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then(userCredidentials => {
             const user = userCredidentials.user;
+
+            setUserLoggedInId(user.uid);
             handleGetUserInformations(user.uid);
             
             setIsUserLoggedIn(true);

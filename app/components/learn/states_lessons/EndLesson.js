@@ -2,7 +2,7 @@ import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
 import { Text } from 'react-native-paper';
 import theme from '../../../../theme-design';
 
-const EndLesson = ({lesson, navigation}) => {
+const EndLesson = ({lesson, navigation}) => {    
     return (
         <View style={styles.cardContainer}>
             <View style={styles.card}>

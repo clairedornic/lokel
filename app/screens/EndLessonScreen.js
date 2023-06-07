@@ -1,18 +1,42 @@
-import { useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { View, StyleSheet, TouchableHighlight, Image } from "react-native";
-import { Text, Button } from 'react-native-paper';
+import { Button } from 'react-native-paper';
+import { LogInContext } from '../contexts/LogInContext';
 import HeaderLesson from '../components/learn/HeaderLesson';
 import CardEndLesson from '../components/learn/CardEndLesson';
 import theme from '../../theme-design';
+import { updateCurrentLesson } from '../api/updateCurrentLesson';
 
 const EndLessonScreen = ({route, navigation}) => {
     
     const { exerciseSuccesses, lesson } = route.params;
+    const { userLoggedInId, setCurrentLessonUser, setCurrentStateLessonUser } = useContext(LogInContext);
     const isLessonSuccess = Object.values(exerciseSuccesses).every(item => item === true);
+
+    useEffect(() => {
+        const updateInfosCurrentLesson = async () => {
+            try {
+                const currentLessonInfos = await updateCurrentLesson(userLoggedInId, lesson, isLessonSuccess ? 1 : 2);
+                const { status, currentLesson } = currentLessonInfos;
+    
+                if (currentLesson != null) {
+                    setCurrentLessonUser(currentLesson);
+                    setCurrentStateLessonUser(status);
+                } else {
+                    setCurrentStateLessonUser(status);
+                }
+
+            } catch (error) {
+                console.error('Une erreur s\'est produite lors de la mise à jour de la leçon actuelle :', error);
+            }
+        };
+
+        updateInfosCurrentLesson();
+    }, []);
 
     return(
         <View style={styles.container}>
-            <View style={styles.containerContent}>
+            <View style={styles.containerContent}> 
                 <TouchableHighlight 
                     style={styles.iconBackContainer}
                     onPress={() => {
