@@ -24,7 +24,9 @@ const BlockedLesson = ({lesson, navigation}) => {
 
 const styles = StyleSheet.create({
     cardContainer: {
-        minWidth: 258
+        minWidth: 258,
+        paddingTop: 45,
+
     },
     card: {
       display: 'flex',

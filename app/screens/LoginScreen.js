@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import { View, Image, StyleSheet } from "react-native";
 import { Divider, Text, Button, TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';

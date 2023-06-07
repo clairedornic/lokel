@@ -34,6 +34,7 @@ const HomeScreen = () => {
                 >
                 <View>
                 <Button 
+                    style={styles.button}
                     mode="contained"
                     onPress={toggleCameraType}>Flip Camera</Button>
                 </View>
@@ -52,6 +53,10 @@ const styles = StyleSheet.create({
         flex: 1,
         aspectRatio: 1
     },
+    button: {
+        marginTop: 45,
+        marginHorizontal: 45
+    }
 });
 
 export default HomeScreen;
