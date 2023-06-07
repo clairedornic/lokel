@@ -36,7 +36,8 @@ const CurrentLesson = ({lesson, navigation}) => {
 
 const styles = StyleSheet.create({
     cardContainer: {
-        minWidth: 258
+        minWidth: 258,
+        paddingTop: 15,
     },
     illu: {
         display: 'flex',
