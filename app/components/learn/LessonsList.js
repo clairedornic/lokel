@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     color: theme.colors.black,
   },
   lessonsList: {
+    marginTop: 5,
     alignItems: 'baseline',
     width: theme.size.full,
   }

@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     card: {
       display: 'flex',
       flexDirection: 'row',
+      justifyContent: 'space-between',
       paddingHorizontal: 17,
       paddingVertical: 15,
       backgroundColor: theme.colors.lila,

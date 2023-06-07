@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         width: theme.size.full,
-        paddingBottom: 45,
         paddingLeft: 1,
     },
     rightAlignedContainer: {
@@ -54,7 +53,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         width: theme.size.full,
-        paddingBottom: 45,
         paddingLeft: 1,
     },
 });
