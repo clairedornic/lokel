@@ -9,7 +9,7 @@ import CurrentLesson from "./states_lessons/CurrentLesson";
 const LessonItem = ({lesson, state, navigation, isRightAligned}) => {
 
     const containerStyle = isRightAligned ? styles.rightAlignedContainer : styles.cardContainer;
-    
+
     switch (state) {
         case 0:
             return (

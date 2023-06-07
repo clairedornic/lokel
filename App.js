@@ -39,6 +39,7 @@ const App = () => {
 	const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 	const [currentLessonUser, setCurrentLessonUser] = useState();
 	const [currentStateLessonUser, setCurrentStateLessonUser] = useState();
+	const [userLoggedInId, setUserLoggedInId] = useState();
 	const [isLoaded] = useFonts(customFonts);
 	
 	if (!isLoaded) {
@@ -51,7 +52,7 @@ const App = () => {
 		<PaperProvider>
 			<NavigationContainer style={styles.nav}>
 				<LogInContext.Provider
-					value={{ setIsUserLoggedIn, setCurrentLessonUser, currentLessonUser, setCurrentStateLessonUser, currentStateLessonUser}}
+					value={{ setIsUserLoggedIn, setCurrentLessonUser, userLoggedInId, setUserLoggedInId, currentLessonUser, setCurrentStateLessonUser, currentStateLessonUser}}
 				>
 					{isUserLoggedIn ? (
 								<Tab.Navigator
