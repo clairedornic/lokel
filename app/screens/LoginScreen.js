@@ -62,6 +62,8 @@ const LoginScreen = () => {
                         onChangeText={email => setEmail(email)}
                         underlineColor='#FFFFFF00'
                         style={styles.input}
+                        placeholderTextColor={theme.colors.black}
+                        selectionColor={theme.colors.black}
                         underlineStyle={styles.inputBorder}
                         contentStyle={styles.inputContent}
                     />
@@ -77,6 +79,8 @@ const LoginScreen = () => {
                         onChangeText={password => setPassword(password)}
                         underlineColor='#FFFFFF00'
                         style={styles.input}
+                        placeholderTextColor={theme.colors.black}
+                        selectionColor={theme.colors.black}
                         underlineStyle={styles.inputBorder}
                         contentStyle={styles.inputContent}
                     />
