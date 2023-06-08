@@ -1,10 +1,9 @@
-import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
-import { Text } from 'react-native-paper';
-import theme from '../../../theme-design';
+import { StyleSheet, View } from "react-native";
 import BlockedLesson from "./states_lessons/BlockedLesson";
 import InProgressLesson from "./states_lessons/InProgressLesson";
 import EndLesson from "./states_lessons/EndLesson";
 import CurrentLesson from "./states_lessons/CurrentLesson";
+import theme from '../../../theme-design';
 
 const LessonItem = ({lesson, state, navigation, isRightAligned}) => {
 
