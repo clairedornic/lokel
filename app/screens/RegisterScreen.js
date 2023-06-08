@@ -88,6 +88,8 @@ const RegisterScreen = () => {
                         onChangeText={text => setFirstName(text)}
                         underlineColor='#FFFFFF00'
                         style={styles.input}
+                        placeholderTextColor={theme.colors.black}
+                        selectionColor={theme.colors.black}
                         underlineStyle={styles.inputBorder}
                         contentStyle={styles.inputContent}
                     />
@@ -101,6 +103,8 @@ const RegisterScreen = () => {
                         onChangeText={text => setLastName(text)}
                         underlineColor='#FFFFFF00'
                         style={styles.input}
+                        placeholderTextColor={theme.colors.black}
+                        selectionColor={theme.colors.black}
                         underlineStyle={styles.inputBorder}
                         contentStyle={styles.inputContent}
                     />
@@ -114,6 +118,8 @@ const RegisterScreen = () => {
                         onChangeText={text => setEmail(text)}
                         underlineColor='#FFFFFF00'
                         style={styles.input}
+                        placeholderTextColor={theme.colors.black}
+                        selectionColor={theme.colors.black}
                         underlineStyle={styles.inputBorder}
                         contentStyle={styles.inputContent}
                     />
@@ -129,6 +135,8 @@ const RegisterScreen = () => {
                         onChangeText={text => setPassword(text)}
                         underlineColor='#FFFFFF00'
                         style={styles.input}
+                        placeholderTextColor={theme.colors.black}
+                        selectionColor={theme.colors.black}
                         underlineStyle={styles.inputBorder}
                         contentStyle={styles.inputContent}
                     />
