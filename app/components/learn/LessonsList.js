@@ -31,6 +31,7 @@ const LessonsList = ({ chapter, navigation }) => {
     }
 
     const getLessonState = (lesson) => {
+
       if (lesson.id === currentLessonUser) {
           return currentStateLessonUser;
       } else if (lesson.number < currentLessonUser) {
