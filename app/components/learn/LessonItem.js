@@ -15,7 +15,7 @@ const LessonItem = ({lesson, state, navigation, isRightAligned}) => {
         case 0:
             return (
                 <View style={containerStyle}>
-                    <BlockedLesson lesson={lesson} navigation={navigation}/>
+                    <BlockedLesson lesson={lesson}/>
                 </View>
             );
         case 1:

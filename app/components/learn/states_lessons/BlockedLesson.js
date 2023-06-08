@@ -2,7 +2,7 @@ import { StyleSheet, View, Image } from "react-native";
 import { Text } from 'react-native-paper';
 import theme from '../../../../theme-design';
 
-const BlockedLesson = ({lesson, navigation}) => {
+const BlockedLesson = ({lesson}) => {
 
     return (
         <View style={styles.cardContainer}>
