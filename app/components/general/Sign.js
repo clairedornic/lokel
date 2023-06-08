@@ -1,7 +1,7 @@
 import { View, StyleSheet, Image } from 'react-native';
 import theme from '../../../theme-design';
 
-const Sign = ({link, width, height}) => {
+const Sign = ({link}) => {
   
     return (
       <View style={styles.container}>
