@@ -7,10 +7,11 @@ import { FIREBASE_APP } from '../config/firebase'
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { LogInContext } from '../contexts/LogInContext'
+import { getUserById } from '../api/getUserById';
 import theme from '../../theme-design';
 
 const RegisterScreen = () => {
-    const { setIsUserLoggedIn } = useContext(LogInContext);
+    const { setIsUserLoggedIn, setCurrentLessonUser, setUserLoggedInId, setCurrentStateLessonUser } = useContext(LogInContext);
 
     const [conditionsChecked, setConditionsChecked] = useState(false);
     const [firstName, setFirstName ] = useState('');
@@ -22,6 +23,12 @@ const RegisterScreen = () => {
     const db = getFirestore(FIREBASE_APP);
     const navigation = useNavigation();
 
+    const handleGetUserInformations = async (userId) => {
+        const userInfos = await getUserById(userId);
+        setCurrentLessonUser(userInfos.current_lesson);
+        setCurrentStateLessonUser(userInfos.status_current_lesson);
+    };
+
     const handleRegister = async () => {
 
         createUserWithEmailAndPassword(auth, email, password)
@@ -30,10 +37,10 @@ const RegisterScreen = () => {
             sendEmailVerification(auth.currentUser)
 
             .then(() => {
-                console.log('Verification Email send')
+                alert('Email de vérification envoyé')
             })
             .catch(err => {
-                alert("Un problème est survenu : " + err)
+                alert("Un problème est survenu pour envoyer l'email de vérification")
             })
             .then(() => {
                 const currentUser = auth.currentUser;
@@ -42,11 +49,14 @@ const RegisterScreen = () => {
                     email: currentUser.email,
                     lastName: lastName,
                     firstName: firstName,
-                    current_lesson: 'BySA2bA5IYnGoq4T11SU',
+                    current_lesson: 'Q5cMKpGXnEAkjMeR6x3t',
                     status_current_lesson: 1
                 })
 
+                setUserLoggedInId(currentUser.uid);
+                handleGetUserInformations(currentUser.uid);
                 setIsUserLoggedIn(true);
+                
                 navigation.navigate('HomeScreen');
             })
             .catch(err => {
@@ -54,7 +64,7 @@ const RegisterScreen = () => {
             })
         })
         .catch(err => {
-            alert("Un problème est survenu au moment de l'incription");
+            alert("Un problème est survenu au moment de l'incription, assurez-vous que votre mot de passe comporte au moins 6 caractères");
         });
     }
 
