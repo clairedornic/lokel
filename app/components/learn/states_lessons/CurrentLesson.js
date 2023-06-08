@@ -1,8 +1,19 @@
-import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
+import { StyleSheet, View, Image, TouchableHighlight, Alert } from "react-native";
 import { Text } from 'react-native-paper';
 import theme from '../../../../theme-design';
 
-const CurrentLesson = ({lesson, navigation}) => {
+const CurrentLesson = ({lesson, navigation, isUnavailable}) => {
+
+    const handlePress = () => {
+        if (isUnavailable) {
+            Alert.alert("La leçon est indisponible");
+        } else {
+            navigation.navigate('LessonScreen', {
+                lesson: lesson,
+            });
+        }
+    };
+
     return (
         <View style={styles.cardContainer}>
             <Image 
@@ -17,11 +28,7 @@ const CurrentLesson = ({lesson, navigation}) => {
                 <View style={styles.link}>
                     <TouchableHighlight 
                         style={styles.iconContainer}
-                        onPress={() => {
-                            navigation.navigate('LessonScreen', {
-                                lesson: lesson,
-                            });
-                        }}
+                        onPress={handlePress}
                     >
                         <Image 
                         style={styles.icon}

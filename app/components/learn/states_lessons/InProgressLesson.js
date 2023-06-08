@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
+import { StyleSheet, View, Image, TouchableHighlight, Alert } from "react-native";
 import { Text } from 'react-native-paper';
 import theme from '../../../../theme-design';
 
@@ -20,7 +20,7 @@ const InProgressLesson = ({lesson, navigation}) => {
                         onPress={() => {
                             navigation.navigate('LessonScreen', {
                                 lesson: lesson,
-                            });
+                            })
                         }}
                     >
                         <Image 

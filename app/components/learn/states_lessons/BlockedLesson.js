@@ -3,6 +3,7 @@ import { Text } from 'react-native-paper';
 import theme from '../../../../theme-design';
 
 const BlockedLesson = ({lesson, navigation}) => {
+
     return (
         <View style={styles.cardContainer}>
             <View style={styles.card}>

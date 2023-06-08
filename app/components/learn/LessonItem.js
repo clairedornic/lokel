@@ -9,18 +9,19 @@ import CurrentLesson from "./states_lessons/CurrentLesson";
 const LessonItem = ({lesson, state, navigation, isRightAligned}) => {
 
     const containerStyle = isRightAligned ? styles.rightAlignedContainer : styles.cardContainer;
+    const isUnavailable = lesson.number > 1;
 
     switch (state) {
         case 0:
             return (
                 <View style={containerStyle}>
-                    <BlockedLesson lesson={lesson} navigation={navigation} />
+                    <BlockedLesson lesson={lesson} navigation={navigation}/>
                 </View>
             );
         case 1:
             return (
                 <View style={containerStyle}>
-                    <CurrentLesson lesson={lesson} navigation={navigation} />
+                    <CurrentLesson lesson={lesson} navigation={navigation} isUnavailable={isUnavailable}/>
                 </View>
             );
         case 2:
@@ -32,7 +33,7 @@ const LessonItem = ({lesson, state, navigation, isRightAligned}) => {
         case 3:
             return (
                 <View style={containerStyle}>
-                    <EndLesson lesson={lesson} navigation={navigation} />
+                    <EndLesson lesson={lesson} navigation={navigation}/>
                 </View>
             );
         default:

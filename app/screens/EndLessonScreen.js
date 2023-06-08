@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { View, StyleSheet, TouchableHighlight, Image } from "react-native";
+import { View, StyleSheet, TouchableHighlight, Image, Alert } from "react-native";
 import { Button } from 'react-native-paper';
 import { LogInContext } from '../contexts/LogInContext';
 import HeaderLesson from '../components/learn/HeaderLesson';
@@ -62,10 +62,7 @@ const EndLessonScreen = ({route, navigation}) => {
                     labelStyle={styles.labelButton}
                     style={styles.button}
                     onPress={() => {
-                        navigation.navigate('ExercisesScreen', {
-                            lesson: lesson,
-                            exercises: lesson.associed_exercices,
-                        });
+                        Alert.alert("La leçon est indisponible");
                     }}
                     >
                     {isLessonSuccess ? 'Passer à la leçon suivante' : 'Recommencer la leçon'}
