@@ -1,5 +1,5 @@
-import { View, StyleSheet, TouchableHighlight, Image } from "react-native";
-import { Text, Button } from 'react-native-paper';
+import { View, StyleSheet, Image } from "react-native";
+import { Text } from 'react-native-paper';
 import theme from '../../../theme-design';
 
 const CardEndLesson = ({isLessonSuccess}) => {
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         paddingLeft: 18,
         paddingRight: 22,
         width: '100%',
-        borderRadius: 14
+        borderRadius: theme.radius.small
     },
     text: {
         fontFamily: 'Poppins-SemiBold',

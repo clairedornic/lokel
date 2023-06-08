@@ -39,7 +39,8 @@ const theme = {
   },
   radius: {
     medium: 20,
-    small: 15,
+    small: 14,
+    full: 100
   },
 };
 

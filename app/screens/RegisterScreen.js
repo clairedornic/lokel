@@ -250,12 +250,12 @@ const styles = StyleSheet.create({
     },
     inputBorder: {
         borderColor: '#FFFFFF00',
-        borderRadius: 14,
+        borderRadius: theme.radius.small,
         borderWidth: 0,
     },
     inputContent: {
         backgroundColor: theme.colors.lila,
-        borderRadius: 14,
+        borderRadius: theme.radius.small,
         borderColor: '#FFFFFF00',
         borderWidth: 0,
     },

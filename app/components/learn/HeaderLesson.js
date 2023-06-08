@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.lila,
         height: 85,
         width: 85,
-        borderRadius: 100
+        borderRadius: theme.radius.full,
     }, 
     iconlesson: {
         width: 36,

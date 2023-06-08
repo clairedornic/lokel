@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 17,
       paddingVertical: 15,
       backgroundColor: theme.colors.lightGreen,
-      borderRadius: 14,
+      borderRadius: theme.radius.small,
       elevation: 2,
       shadowColor: '#000000',
     },
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.green,
         height: 45,
         width: 45,
-        borderRadius: 100
+        borderRadius: theme.radius.full,
     },
     titleLesson: {
         fontFamily: 'Poppins-Bold',

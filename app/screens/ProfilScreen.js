@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { View, StyleSheet } from "react-native"
 import { useNavigation } from '@react-navigation/native';
-import { Text, Button } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { FIREBASE_APP } from '../config/firebase'
 import { getAuth, signOut } from "firebase/auth";
 import { LogInContext } from '../contexts/LogInContext'

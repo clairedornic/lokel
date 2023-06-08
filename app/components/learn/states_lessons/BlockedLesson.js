@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { Text } from 'react-native-paper';
 import theme from '../../../../theme-design';
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       paddingVertical: 10,
       backgroundColor: theme.colors.lightGray,
-      borderRadius: 14,
+      borderRadius: theme.radius.small,
       elevation: 2,
       shadowColor: '#000000',
     },
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.gray,
         height: 40,
         width: 40,
-        borderRadius: 100
+        borderRadius: theme.radius.full,
     },
     titleLesson: {
         fontFamily: 'Poppins-Bold',
