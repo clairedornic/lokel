@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     icon:{
         height: 17,
         resizeMode: 'contain',
-        marginLeft: 3
+        marginLeft: 0
     }
 });
 
