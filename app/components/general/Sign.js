@@ -1,8 +1,7 @@
-import { useState, useRef,useEffect } from 'react';
-import { View, StyleSheet, Button, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import theme from '../../../theme-design';
 
-const Sign = ({link, width, height}) => {
+const Sign = ({link}) => {
   
     return (
       <View style={styles.container}>
@@ -18,14 +17,14 @@ const styles = StyleSheet.create({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 14,
+      borderRadius: theme.radius.small,
       overflow: "hidden",
     },
     sign: {
       alignSelf: 'center',
       width: 137,
       height: 137,
-      borderRadius: 14,
+      borderRadius: theme.radius.small,
     },
 });
 

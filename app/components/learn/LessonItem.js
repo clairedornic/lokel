@@ -1,26 +1,26 @@
-import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
-import { Text } from 'react-native-paper';
-import theme from '../../../theme-design';
+import { StyleSheet, View } from "react-native";
 import BlockedLesson from "./states_lessons/BlockedLesson";
 import InProgressLesson from "./states_lessons/InProgressLesson";
 import EndLesson from "./states_lessons/EndLesson";
 import CurrentLesson from "./states_lessons/CurrentLesson";
+import theme from '../../../theme-design';
 
 const LessonItem = ({lesson, state, navigation, isRightAligned}) => {
 
     const containerStyle = isRightAligned ? styles.rightAlignedContainer : styles.cardContainer;
+    const isUnavailable = lesson.number > 1;
 
     switch (state) {
         case 0:
             return (
                 <View style={containerStyle}>
-                    <BlockedLesson lesson={lesson} navigation={navigation} />
+                    <BlockedLesson lesson={lesson}/>
                 </View>
             );
         case 1:
             return (
                 <View style={containerStyle}>
-                    <CurrentLesson lesson={lesson} navigation={navigation} />
+                    <CurrentLesson lesson={lesson} navigation={navigation} isUnavailable={isUnavailable}/>
                 </View>
             );
         case 2:
@@ -32,7 +32,7 @@ const LessonItem = ({lesson, state, navigation, isRightAligned}) => {
         case 3:
             return (
                 <View style={containerStyle}>
-                    <EndLesson lesson={lesson} navigation={navigation} />
+                    <EndLesson lesson={lesson} navigation={navigation}/>
                 </View>
             );
         default:

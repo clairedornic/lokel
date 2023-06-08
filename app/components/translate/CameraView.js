@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { View, StyleSheet } from "react-native"
-import { Text, Button } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { Camera, CameraType } from 'expo-camera';
 
 const CameraView = () => {

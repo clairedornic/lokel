@@ -1,5 +1,5 @@
 import { View, StyleSheet, TouchableHighlight, Image, FlatList, SafeAreaView } from "react-native";
-import { Divider, Text, Button } from 'react-native-paper';
+import { Text, Button } from 'react-native-paper';
 import HeaderLesson from '../components/learn/HeaderLesson';
 
 import theme from '../../theme-design';
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.lightGray,
         height: 45,
         width: 45,
-        borderRadius: 100
+        borderRadius: theme.radius.full,
     },
     iconBack:{
         width: 18,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.lila,
         height: 85,
         width: 85,
-        borderRadius: 100
+        borderRadius: theme.radius.full,
     }, 
     iconlesson: {
         width: 36,
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     },
     lessonContent: {
         maxHeight: 200,
-        borderRadius: 14,
+        borderRadius: theme.radius.small,
         backgroundColor: theme.colors.lila,
         padding: 18,
         elevation: 2,

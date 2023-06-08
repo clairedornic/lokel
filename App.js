@@ -1,9 +1,8 @@
-import { useCallback, useState } from 'react';
-import { StyleSheet, Text, LogBox } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text } from 'react-native';
 
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -19,20 +18,17 @@ import AuthStack from './app/stacks/AuthStack';
 import NavIcons from './app/components/nav/NavIcons';
 import theme from './theme-design';
 
-SplashScreen.preventAutoHideAsync();
 const Tab = createBottomTabNavigator();
-
-let customFonts = {
-	'Poppins-Light': require('./app/assets/fonts/Poppins-Light.ttf'),
-	'Poppins': require('./app/assets/fonts/Poppins-Regular.ttf'),
-	'Poppins-Medium': require('./app/assets/fonts/Poppins-Medium.ttf'),
-	'Poppins-SemiBold': require('./app/assets/fonts/Poppins-SemiBold.ttf'),
-	'Poppins-Bold': require('./app/assets/fonts/Poppins-Bold.ttf'),
-	'Husansans-Light': require('./app/assets/fonts/Husansans-Light.ttf'),
-	'Husansans-Regular': require('./app/assets/fonts/Husansans-Regular.ttf'),
-	'Husansans-Medium': require('./app/assets/fonts/Husansans-Medium.ttf'),
-	'Husansans-Bold': require('./app/assets/fonts/Husansans-Bold.ttf'),
-};
+// 	'Poppins-Light': require('./app/assets/fonts/Poppins-Light.ttf'),
+// 	'Poppins': require('./app/assets/fonts/Poppins-Regular.ttf'),
+// 	'Poppins-Medium': require('./app/assets/fonts/Poppins-Medium.ttf'),
+// 	'Poppins-SemiBold': require('./app/assets/fonts/Poppins-SemiBold.ttf'),
+// 	'Poppins-Bold': require('./app/assets/fonts/Poppins-Bold.ttf'),
+// 	'Husansans-Light': require('./app/assets/fonts/Husansans-Light.ttf'),
+// 	'Husansans-Regular': require('./app/assets/fonts/Husansans-Regular.ttf'),
+// 	'Husansans-Medium': require('./app/assets/fonts/Husansans-Medium.ttf'),
+// 	'Husansans-Bold': require('./app/assets/fonts/Husansans-Bold.ttf'),
+// };
 
 const App = () => {
 
@@ -40,13 +36,21 @@ const App = () => {
 	const [currentLessonUser, setCurrentLessonUser] = useState();
 	const [currentStateLessonUser, setCurrentStateLessonUser] = useState();
 	const [userLoggedInId, setUserLoggedInId] = useState();
-	const [isLoaded] = useFonts(customFonts);
-	
-	if (!isLoaded) {
+	const [fontsLoaded] = useFonts({
+		'Poppins-Light': require('./app/assets/fonts/Poppins-Light.ttf'),
+		'Poppins': require('./app/assets/fonts/Poppins-Regular.ttf'),
+		'Poppins-Medium': require('./app/assets/fonts/Poppins-Medium.ttf'),
+		'Poppins-SemiBold': require('./app/assets/fonts/Poppins-SemiBold.ttf'),
+		'Poppins-Bold': require('./app/assets/fonts/Poppins-Bold.ttf'),
+		'Husansans-Light': require('./app/assets/fonts/Husansans-Light.ttf'),
+		'Husansans-Regular': require('./app/assets/fonts/Husansans-Regular.ttf'),
+		'Husansans-Medium': require('./app/assets/fonts/Husansans-Medium.ttf'),
+		'Husansans-Bold': require('./app/assets/fonts/Husansans-Bold.ttf'),
+	});
+
+	if (!fontsLoaded) {
 		return null;
 	}
-
-	SplashScreen.hideAsync();
 
 	return (
 		<PaperProvider>

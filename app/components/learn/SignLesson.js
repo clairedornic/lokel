@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Text, Button } from 'react-native-paper';
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import Sign from '../general/Sign'
 import theme from '../../../theme-design';
 
@@ -24,7 +23,7 @@ const SignLesson = ({sign, handleSignPress, setStateButton, stateButton}) => {
     return (
         <TouchableOpacity onPress={() => handlePress(sign.id)}>
              <View style={[styles.signButton, isActive && styles.activeButton]}>
-                <Sign width={137} height={137} link={sign.url} />
+                <Sign link={sign.url} />
             </View>
         </TouchableOpacity>
     )

@@ -20,7 +20,7 @@ const InProgressLesson = ({lesson, navigation}) => {
                         onPress={() => {
                             navigation.navigate('LessonScreen', {
                                 lesson: lesson,
-                            });
+                            })
                         }}
                     >
                         <Image 
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 17,
       paddingVertical: 15,
       backgroundColor: theme.colors.lightYellow,
-      borderRadius: 14,
+      borderRadius: theme.radius.small,
       elevation: 2,
       shadowColor: '#000000',
     },
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.yellow,
         height: 45,
         width: 45,
-        borderRadius: 100
+        borderRadius: theme.radius.full,
     },
     numberLesson: {
         fontFamily: 'Poppins',

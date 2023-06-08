@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableHighlight, Image } from "react-native";
-import { Divider, Text, Button } from 'react-native-paper';
+import { Divider, Text } from 'react-native-paper';
 import { getExerciseById } from '../api/getExerciseById';
 import RecognizeSignExercise from '../components/learn/types_exercises/RecognizeSignExercise';
 import theme from '../../theme-design';
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.lightGray,
         height: 45,
         width: 45,
-        borderRadius: 100
+        borderRadius: theme.radius.full,
     },
     iconBack:{
         width: 18,

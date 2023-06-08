@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { View, StyleSheet, TouchableHighlight, Image } from "react-native";
+import { View, StyleSheet, TouchableHighlight, Image, Alert } from "react-native";
 import { Button } from 'react-native-paper';
 import { LogInContext } from '../contexts/LogInContext';
 import HeaderLesson from '../components/learn/HeaderLesson';
@@ -62,10 +62,7 @@ const EndLessonScreen = ({route, navigation}) => {
                     labelStyle={styles.labelButton}
                     style={styles.button}
                     onPress={() => {
-                        navigation.navigate('ExercisesScreen', {
-                            lesson: lesson,
-                            exercises: lesson.associed_exercices,
-                        });
+                        Alert.alert("La leçon est indisponible");
                     }}
                     >
                     {isLessonSuccess ? 'Passer à la leçon suivante' : 'Recommencer la leçon'}
@@ -104,7 +101,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.lightGray,
         height: 45,
         width: 45,
-        borderRadius: 100
+        borderRadius: theme.radius.full,
     },
     iconBack:{
         width: 18,
@@ -118,7 +115,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.lila,
         height: 85,
         width: 85,
-        borderRadius: 100
+        borderRadius: theme.radius.full,
     }, 
     iconlesson: {
         width: 36,
@@ -152,7 +149,7 @@ const styles = StyleSheet.create({
     },
     lessonContent: {
         maxHeight: 200,
-        borderRadius: 14,
+        borderRadius: theme.radius.small,
         backgroundColor: theme.colors.lila,
         padding: 18,
         elevation: 2,
