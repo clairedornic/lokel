@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.4
     },
     input: {
-        color: theme.colors.gray,
+        color: theme.colors.black,
         fontFamily: 'Poppins-Light',
         fontSize: 16,
         letterSpacing: 0.2,
