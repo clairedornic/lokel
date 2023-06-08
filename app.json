@@ -7,7 +7,7 @@
     "icon": "./app/assets/img/favicon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./app/assets/img/favicon.png",
+      "image": "./app/assets/img/splash-screen.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/img/favicon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.clairoun.Lokel"
     },
     "web": {
       "favicon": "./app/assets/img/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fcbeae4c-cb92-4281-a7d4-cab2eed54cbc"
+      }
     }
   }
 }
