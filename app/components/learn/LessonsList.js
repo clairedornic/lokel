@@ -30,11 +30,17 @@ const LessonsList = ({ chapter, navigation }) => {
         setLessons(newLessons);
     }
 
-    const getLessonState = (lesson) => {
+    async function getLessonInfos(idLesson) {
+      return await getLessonById(idLesson);
+    }
 
+    const getLessonState = (lesson) => {
+      
+      const currentLessonInfos = lessons.find(item => item.id === currentLessonUser);
+     
       if (lesson.id === currentLessonUser) {
           return currentStateLessonUser;
-      } else if (lesson.number < currentLessonUser) {
+      } else if (lesson.number < currentLessonInfos.number) {
           return 3;
       } else {
           return 0;
