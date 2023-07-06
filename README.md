@@ -1,56 +1,57 @@
 # Lokel
 
-## Projet de traduction et d'apprentissage du langage des signes
+## Sign language translation and learning project
 
-Ce projet vise à rendre le langage des signes plus accessible en le transformant en un langage facilement traduisible et simple à apprendre. L'objectif principal est de faciliter la communication des personnes sourdes, malentendantes ou muettes en proposant des fonctionnalités de traduction et d'apprentissage du langage des signes.
+This project aims to make sign language more accessible by transforming it into a language that is easy to translate and simple to learn. The main aim is to make communication easier for people who are deaf, hard of hearing or mute, by offering sign language translation and learning functions.
 
-## Fonctionnalités
-### Fonctionnalités du MVP
+## Features
+### MVP features
 
-- **Apprentissage interactif** : L'application offrira des fonctionnalités d'apprentissage du langage des signes à l'aide d'exercices pratiques qui leur permettront de comprendre et d'apprendre toutes les nuances d'une langue des signes.
+- **Interactive learning** : The application will offer sign language learning features with practical exercises that will enable them to understand and learn all the nuances of sign language.
 
-- **Compte utilisateur** : L'application permettra aux utilisateurs de créer un compte sur l'application pour accéder à son contenu et également leur permettre de suivre leur progression au niveau de l'apprentissage d'une ou de plusieurs langues des signes.
-### Fonctionnalités futures
+- **User account** : The application will allow users to create an account on the application to access its content and also allow them to track their progress in learning one or more sign languages.
+- 
+### Future features
 
-- **Traduction en temps réel** : L'application permettra aux utilisateurs de saisir du texte et de le traduire en langage des signes en temps réel. Cela facilitera la communication entre les personnes utilisant la langue des signes et celles qui ne la comprennent pas.
+- **Real-time translation** : The application will allow users to enter text and translate it into sign language in real time. This will facilitate communication between people who use sign language and those who do not.
 
-- **Dictionnaire des signes** : Une base de données de signes sera intégrée à l'application, permettant aux utilisateurs de rechercher des signes spécifiques et d'obtenir leur signification. Cela facilitera la compréhension et l'apprentissage des signes individuels.
+- **Dictionary of signs** : A database of signs will be integrated into the application, allowing users to search for specific signs and obtain their meaning. This will make it easier to understand and learn individual signs.
+  
+- **User profile** :  The application will allow users to manage their personal information and access options to tailor the application to their needs.
 
-- **Profil utilisateur** :  L'application permettra aux utilisateurs de gérer leurs informations personnelles et d'accéder à des options afin de personnaliser l'application en fonction de leurs besoins.
+## Technologies used
 
-## Technologies utilisées
+This project is being developed using the following technologies :
 
-Ce projet est développé en utilisant les technologies suivantes :
+- **React Native** : A JavaScript library for developing cross-platform mobile applications. It can be used to create responsive and dynamic user interfaces.
 
-- **React Native** : Une librairie JavaScript pour le développement d'applications mobiles multiplateformes. Il permet de créer des interfaces utilisateur réactives et dynamiques.
-
-- **Firebase** : Une plateforme de développement d'applications qui fournit des services tels que l'authentification des utilisateurs, la base de données en temps réel, le stockage de fichiers et les notifications push.
+- **Firebase** : An application development platform that provides services such as user authentication, real-time database, file storage and push notifications.
 
 ## Installation
 
-1. Assurez-vous d'avoir Node.js et npm installés sur votre machine.
+1. Make sure you have Node.js and npm installed on your machine.
 
-2. Clonez ce référentiel sur votre machine locale :
+2. Clone this repository on your local machine:
 ```
 git clone https://github.com/clairedornic/lokel.git
 ```
 
-3. Accédez au répertoire du projet :
+3. Go to the project directory :
 ```
 cd lokel
 ```
 
-4. Installez les dépendances du projet à l'aide de la commande suivante :
+4. Install the project dependencies using the following command :
 
 ```
 npm install
 ```
 
-5. Créez un projet Firebase sur le site officiel de Firebase et récupérez les clés d'API nécessaires.
+5. Create a Firebase project on the official Firebase website and obtain the necessary API keys.
 
-6. Configurez les clés d'API Firebase dans le fichier de configuration de l'application :
+6. Configure the Firebase API keys in the :
 ```
-// Chemin du fichier de configuration : /src/config/firebase.js
+// Configuration file path : /src/config/firebase.js
 const firebaseConfig = {
   apiKey: 'VOTRE_API_KEY',
   authDomain: 'VOTRE_AUTH_DOMAIN',
