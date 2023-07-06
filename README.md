@@ -1,4 +1,5 @@
 # Lokel
+Project carried out as part of my master's degree at ECV Nantes.
 
 ## Sign language translation and learning project
 
